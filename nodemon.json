@@ -1,0 +1,14 @@
+{
+    "watch": [
+        "src"
+    ],
+    "ignore": [
+        "**/*.test.js",
+        "**/*.spec.js",
+        ".git",
+        "node_modules",
+        "build",
+        "private.key"
+    ],
+    "exec": "yarn lint:fix && babel-node src/server.js"
+}

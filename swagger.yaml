@@ -1,0 +1,200 @@
+swagger: '2.0'
+info:
+  title: Demo app connect API
+  description: |
+    Welcome to Demoapp API!
+  version: 'v1'
+host: localhost:3000
+basePath: /api/v1/
+schemes:
+  - http
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login and get token
+      description: |
+
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            $ref: '#/definitions/definitionLogin'
+          description: Enter email and password to login
+      responses:
+        '200':
+          description: OK
+      deprecated: false
+
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register user
+      description:
+
+      parameters:
+        - in: body
+          name: ' '
+          description: ''
+          schema:
+            type: object
+            $ref: '#/definitions/definitionRegister'
+      responses:
+        '200':
+          description: OK
+      deprecated: false
+
+  /users:
+    get:
+      security:
+        - appAuth: []
+      tags:
+        - User
+      summary: get list users
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: fields
+          in: query
+          description: Specify the fields you want to retrieve example::fields=_id,name,createdAt,updatedAt
+          required: false
+          type: string
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/definitionGetUser'
+      deprecated: false
+  /users/add:
+    post:
+      security:
+        - appAuth: []
+      tags:
+        - User
+      summary: create new user
+      description: |
+
+      parameters:
+        - in: body
+          name: ' '
+          description: ' '
+          schema:
+            type: object
+      responses:
+        '200':
+          description: OK
+      deprecated: false
+
+  /users/edit/{userId}:
+    put:
+      security:
+        - appAuth: []
+      tags:
+        - User
+      summary: Edit user
+      description: |
+
+      parameters:
+        - in: path
+          name: userId
+          description: ''
+          schema:
+            type: string
+        - in: body
+          name: ''
+          description: ''
+          schema:
+            type: object
+      responses:
+        '200':
+          description: OK
+      deprecated: false
+
+  /users/delete/{userId}:
+    delete:
+      security:
+        - appAuth: []
+      tags:
+        - User
+      summary: Delete user
+      description: |
+
+      parameters:
+        - in: path
+          name: userId
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+      deprecated: false
+
+securityDefinitions:
+  appAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+responses:
+  UnauthorizedError:
+    description: Authentication required!
+  successMessage:
+    description: A User object
+
+definitions:
+  definitionLogin:
+    type: object
+    properties:
+      email:
+        type: string
+        default: vietdaica@gmail.com
+      password:
+        type: string
+        default: 123456
+
+  definitionRegister:
+    type: object
+    properties:
+      email:
+        type: string
+        required: true
+      password:
+        type: string
+        required: true
+      phone:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      birthday:
+        type: string
+
+  definitionGetUser:
+    type: object
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      birthday:
+        type: string
+      avatar:
+        type: string
+      phone:
+        type: string

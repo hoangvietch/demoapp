@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "airbnb-base", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "no-console": "off",
+    "semi": "error",
+    "quotes": "off",
+    "camelcase": "warn",
+    "no-unreachable": "off",
+    "consistent-return": "off",
+    "no-unused-vars": "warn",
+    "no-return-await": "error"
+  }
+}

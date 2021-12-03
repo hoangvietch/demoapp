@@ -1,0 +1,10 @@
+build/
+node_modules
+.vscode/
+.env
+yarn-error.log
+private.key
+logs
+.eslintcache
+yarn.lock
+package-lock.json
